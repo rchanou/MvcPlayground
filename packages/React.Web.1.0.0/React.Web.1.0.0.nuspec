@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>React.Web</id>
+    <version>1.0.0</version>
+    <title>ReactJS.NET for ASP.NET</title>
+    <authors>Daniel Lo Nigro</authors>
+    <owners>Daniel Lo Nigro</owners>
+    <licenseUrl>https://github.com/reactjs/React.NET#licence</licenseUrl>
+    <projectUrl>http://reactjs.net/</projectUrl>
+    <iconUrl>http://facebook.github.io/react/img/logo_og.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ReactJS tools for ASP.NET. If using ASP.NET MVC, also install React.Web.Mvc4. 
+Please refer to project site (http://reactjs.net/) for more details, usage examples and sample code.</description>
+    <summary>ReactJS tools for ASP.NET</summary>
+    <copyright>Copyright 2014 Facebook, Inc</copyright>
+    <tags>asp.net mvc asp jquery javascript js react facebook reactjs</tags>
+    <dependencies>
+      <dependency id="WebActivatorEx" version="2.0.5" />
+      <dependency id="React.Core" version="1.0.0" />
+    </dependencies>
+  </metadata>
+</package>

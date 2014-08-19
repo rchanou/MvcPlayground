@@ -1,0 +1,12 @@
+﻿@using React.Web.Mvc;
+@model MvcPlayground.Models.ComponentTable
+
+@{
+    ViewBag.Title = "Index";
+}
+<div id="react"></div>
+@*Html.React("ComponentTable", Model)*@
+<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="../Scripts/react/react-0.10.0.js"></script>
+<script src="../Scripts/nuclear-components.jsx"></script>
+@*Html.ReactInitJavascript()*@
