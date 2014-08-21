@@ -30,6 +30,7 @@ namespace MvcPlayground.Controllers
             var customers = new StoreContext().CustomerSet;
             var table = new ComponentTable
             {
+                headers = new List<string>{ "ID", "First Name", "Last Name" },
                 rows = customers.AsEnumerable().Select(c =>
                 {
                     return new ComponentRow
@@ -39,7 +40,8 @@ namespace MvcPlayground.Controllers
                             new component(new TestCell { text = c.ID.ToString() }),
                             new component(new TextBox { boundRecord = new BoundRecordInfo(c), value = c.FirstName, name = "FirstName" }),
                             new component(new TextBox { boundRecord = new BoundRecordInfo(c), value = c.LastName, name = "LastName" })
-                        }
+                        },
+                        record = new BoundRecordInfo(c)
                     };
                 }).ToList()
             };
@@ -137,7 +139,7 @@ namespace MvcPlayground.Controllers
         public JsonResult RecordUpdateTest()
         {
             var customer = new StoreContext().CustomerSet.First();
-            var request = new recordUpdateRequest
+            var request = new RecordUpdateRequest
             {
                 boundRecord = new BoundRecordInfo(customer),
                 fieldToUpdate = "FirstName",
@@ -155,10 +157,23 @@ namespace MvcPlayground.Controllers
             return Json(CustomerTable());
         }
 
-        public JsonResult UpdateBoundRecord(recordUpdateRequest request)
+        public JsonResult UpdateBoundRecord(RecordUpdateRequest request)
         {
             var response = request.Submit();
             return Json(response);
         }
+
+        public JsonResult DeleteCustomer(RecordDeleteRequest request)
+        {
+            if (request.Submit())
+            {
+                return Json(CustomerTable());
+            }
+            else
+            {
+                return Json(new object());
+            }
+        }
+
     }
 }

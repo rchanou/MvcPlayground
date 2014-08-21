@@ -15,13 +15,15 @@ namespace MvcPlayground.Models
 
     public class ComponentTable
     {
+        public List<string> headers { get; set; }
         public List<ComponentRow> rows { get; set; }
         public List<DataSource> dataSources { get; set; }
     }
 
     public class DataSource
     {
-        public string Name { get; set; }
+        public string name { get; set; }
+        public List<KeyValuePair<string,string>> keyValuePairs {get;set;}
     }
 
     public class ComponentRow
@@ -60,7 +62,7 @@ namespace MvcPlayground.Models
         }
     }
 
-    public class recordUpdateRequest
+    public class RecordUpdateRequest
     {
         public BoundRecordInfo boundRecord { get; set; }
         public string fieldToUpdate { get; set; }
@@ -91,6 +93,26 @@ namespace MvcPlayground.Models
             {
                 return this;
             }
+        }
+    }
+
+    public class RecordDeleteRequest
+    {
+        public BoundRecordInfo boundRecord { get; set; }
+
+        public bool Submit(DryRun dryRun = DryRun.Off)
+        {
+            var context = new StoreContext();
+            var type = Type.GetType(boundRecord.entityClass);
+            var entitySet = context.Set(type);
+            var entity = entitySet.Find(boundRecord.primaryKey);
+            entitySet.Remove(entity);
+            var result = context.SaveChanges();
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 

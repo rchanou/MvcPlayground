@@ -4,9 +4,20 @@
 @{
     ViewBag.Title = "Index";
 }
-<div id="react"></div>
-@*Html.React("ComponentTable", Model)*@
-<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
-<script src="../Scripts/react/react-0.10.0.js"></script>
-<script src="../Scripts/nuclear-components.jsx"></script>
-@*Html.ReactInitJavascript()*@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../Content/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="../Content/bootstrap-theme.css" />
+    </head>
+    <body>
+        <div id="react"></div>
+        <div id="test"></div>
+        @*Html.React("ComponentTable", Model)*@
+        <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+        <script src="../Scripts/jquery-ui-1.11.1.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
+        <script src="../Scripts/react/react-0.10.0.js"></script>
+        <script src="../Scripts/nuclear-components.jsx"></script>
+        @*Html.ReactInitJavascript()*@
+    </body>
+</html>
