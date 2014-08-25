@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcPlayground", "MvcPlayground\MvcPlayground.csproj", "{17CCA546-7AC4-42EA-8A65-1BFC20B7FAA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactComponentTable", "MvcPlayground\ReactComponentTable.csproj", "{17CCA546-7AC4-42EA-8A65-1BFC20B7FAA0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A58AE289-CCEB-4DB6-A96B-6877282B521D}"
 	ProjectSection(SolutionItems) = preProject
