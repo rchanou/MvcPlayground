@@ -26,9 +26,6 @@ var ComponentTable = React.createClass({
             addingRecord: false
         };
     },
-    componentWillMount: function(){
-        this.debouncedPostUpdate = _.debounce(this.postUpdate, 500);
-    },
     poller: null,
     componentDidMount: function(){
         var self = this;
@@ -60,11 +57,8 @@ var ComponentTable = React.createClass({
             console.log(row);
             var rowCells = row.components.map(function(component, j){
                 component.props.onCellClick = self.handleCellClick;
-                component.props.onFieldChange = self.handleFieldChange;
+                component.props.onFieldBlur = self.handleFieldBlur;
                 return <td key={i+'.'+j}>{window[component.type](component.props)}</td>;
-                //console.log(JSON.stringify(component.type + '(' + JSON.parse(component.props) + ')'));
-                //return <td key={i+'.'+j}>{eval(component.type + '(' + JSON.stringify(component.props) + ')')}</td>;
-                //return <td>placeholder</td>;
             });
             return (
                 <tr key={i}>
@@ -129,28 +123,23 @@ var ComponentTable = React.createClass({
         console.log('reached table');
         console.log(e);
     },
-    postUpdate: function(req){
-        console.log('posting update');
-        $.ajax({
-            url: this.props.updateUrl,
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(req),
-            success: function(response){
-                console.log(response);
-            }
-        });
-    },
-    debouncedPostUpdate: function(){}, // turned into debounced version of postUpdate in componentWillMount above
-    handleFieldChange: function(e){
+    handleFieldBlur: function(e){
         var self = this;
         var request = {
             boundRecord: e.boundRecord,
             newValue: e.value,
             fieldToUpdate: e.name
         };
-        this.debouncedPostUpdate.call(this, request);
-       //_.debounce(this.postUpdate(request), 500).call();
+        console.log('posting update');
+        $.ajax({
+            url: self.props.updateUrl,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(request),
+            success: function(response){
+                console.log(response);
+            }
+        });
     }
 });
 
@@ -215,7 +204,12 @@ var TextBox = React.createClass({
         });
     },
     handleBlur: function(e){
-        this.props.onFieldBlur({ name: this.props.name, value: e.target.value });
+        //this.props.onFieldBlur({ name: this.props.name, value: e.target.value });
+        this.props.onFieldBlur({
+            name: this.props.name,
+            value: e.target.value,
+            boundRecord: this.props.boundRecord
+        });
     }
 });
 
