@@ -51,6 +51,7 @@ namespace MvcPlayground.Models
             var entityType = entity.GetType();
             this.entityClass = entityType.Namespace + '.' + entityType.Name;
 
+            // get name of primary key field
             var primaryKeyField = ((IObjectContextAdapter)new StoreContext())
                 .ObjectContext
                 .CreateObjectSet<Customer>()
