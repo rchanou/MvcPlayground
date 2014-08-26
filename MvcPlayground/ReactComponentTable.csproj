@@ -257,9 +257,6 @@
     <Content Include="Scripts\nuclear-components.jsx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\tmweb-react.jsx" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
